@@ -60,35 +60,81 @@ me.skills.pop();
 /* ESERCIZIO 1
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
+const dice = () => {
+  let num = Math.floor(Math.random() * 6) + 1;
+  return num;
+};
+//console.log(dice());
 
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
+const whoIsBigger = (num1, num2) => {
+  if (num1 > num2) {
+    return num1;
+  } else if (num1 === num2) {
+    console.log("I numeri sono uguali");
+  } else {
+    return num2;
+  }
+};
+//console.log(whoIsBigger(3, 5));
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
 
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
+const splitMe = (str) => {
+  return str.split(" ");
+};
+//console.log(splitMe("Ciao sono Mauro"));
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+const deleteOne = (str, bool) => {
+  return bool ? str.slice(1) : str.slice(0, -1);
+};
+
+//console.log(deleteOne("ciao", true));
+//console.log(deleteOne("ciao", false));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
+const onlyLetters = (str) => {
+  return str.replace(/\d/g, "");
+};
+//console.log(onlyLetters("123ABC"));
 
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
+*/
+const isThisAnEmail = (str) => {
+  const atSign = str.indexOf("@");
+  const dot = str.indexOf(".", atSign);
+  return atSign > 0 && dot > atSign + 1 && dot < str.length - 1;
+};
+/*console.log(isThisAnEmail("esempio@mail.com"));
+console.log(isThisAnEmail("esempio@mail"));
+console.log(isThisAnEmail("mail.com"));
+console.log(isThisAnEmail("esempio@.com"));
 */
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+const whatDayIsIt = () => {
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const currentDate = new Date();
+  const day = currentDate.getDay();
+  return daysOfWeek[day];
+};
+//console.log(whatDayIsIt());
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -102,118 +148,48 @@ me.skills.pop();
       values: [3, 3, 4]
   }
 */
+const obj = {
+  values: [],
+  sum: 0,
+};
+
+const rollTheDices = (num) => {
+  for (let i = 0; i < num; i++) {
+    const randomNum = dice();
+    obj.values.push(randomNum);
+    obj.sum = obj.sum + randomNum;
+  }
+  return obj;
+};
+//console.log(rollTheDices(3));
 
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+const howManyDays = (pastDate) => {
+  const currentDate = new Date();
+  const diffTime = currentDate - new Date(pastDate);
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
+};
+//console.log(howManyDays("2025-03-01"));
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
+const isTodayMyBirthday = (birthdayDate) => {
+  let currentDate = new Date();
+  const myBirthday = new Date(currentDate.getFullYear(), birthdayDate.month - 1, birthdayDate.day);
+
+  return currentDate.getMonth() === myBirthday.getMonth() && currentDate.getDate() === myBirthday.getDate();
+};
+const myBirthdayDate = {
+  day: 3,
+  month: 10,
+};
+//console.log(isTodayMyBirthday(myBirthdayDate));
 
 // Arrays & Oggetti
-
-// NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
-
-/* ESERCIZIO 11
-  Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
-  in esso la proprietà chiamata come la stringa passata come secondo parametro.
-*/
-
-/* ESERCIZIO 12
-  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 13
-  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 14
-  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 15
-  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 16
-  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 17
-  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
-*/
-
-/* ESERCIZIO 18
-  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
-  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
-*/
-
-/* ESERCIZIO 19
-  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
-*/
-
-// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
-
-/* ESERCIZIO 20
-  Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
-*/
-
-/* ESERCIZIO 21
-  Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
-*/
-
-/* ESERCIZIO 22
-  Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
-*/
-
-/* ESERCIZIO 23
-  Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
-*/
-
-/* ESERCIZIO 24
-  Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
-*/
-
-/* ESERCIZIO 25
-  Scrivi una funzione per svuotare la lista non ordinata con id "myList".
-*/
-
-/* ESERCIZIO 26
-  Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
-*/
-
-// [EXTRA] JS Avanzato
-
-/* ESERCIZIO 27
-  Crea una funzione chiamata "halfTree" che riceve un numero come parametro e costruisce un mezzo albero di "*" (asterischi) dell'altezza fornita.
-
-  Esempio:
-  halfTree(3)
-
-  *
-  **
-  ***
-
-*/
-
-/* ESERCIZIO 28
-  Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
-
-  Esempio:
-  tree(3)
-
-    *
-   ***
-  *****
-
-*/
-
-/* ESERCIZIO 29
-  Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
-*/
-
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
 
 const movies = [
   {
@@ -316,3 +292,168 @@ const movies = [
     Poster: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
   },
 ];
+
+/* ESERCIZIO 11
+  Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
+  in esso la proprietà chiamata come la stringa passata come secondo parametro.
+*/
+const deleteProp = (obj, prop) => {
+  if (obj.hasOwnProperty(prop)) {
+    delete obj[prop];
+  }
+  return obj;
+};
+
+let Latina = {
+  provincia: "Latina",
+  regione: "Lazio",
+  CAP: 4100,
+};
+//console.log(deleteProp(Latina, "provincia"));
+
+/* ESERCIZIO 12
+  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
+*/
+const newestMovie = (movies) => {
+  if (movies.length === 0) {
+    return null;
+  }
+  let latestMovie = movies.reduce((latest, current) => {
+    return current.Year > latest.Year ? current : latest;
+  });
+  return latestMovie;
+};
+//console.log(newestMovie(movies));
+
+/* ESERCIZIO 13
+  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
+*/
+const countMovies = (movies) => {
+  let movieNum = movies.length;
+  return movieNum;
+};
+//console.log(countMovies(movies));
+
+/* ESERCIZIO 14
+  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
+*/
+const onlyTheYears = (movies) => {
+  return movies.map((movie) => movie.Year);
+};
+//console.log(onlyTheYears(movies));
+
+/* ESERCIZIO 15
+  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
+*/
+const onlyInLastMillennium = (movies) => {
+  return movies.filter((movie) => movie.Year < 2000);
+};
+//console.log(onlyInLastMillennium(movies));
+
+/* ESERCIZIO 16
+  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
+*/
+const sumAllTheYears = (movies) => {
+  return movies.reduce((sum, movie) => sum + Number(movie.Year), 0);
+};
+//console.log(sumAllTheYears(movies));
+
+/* ESERCIZIO 17
+  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
+*/
+const searchByTitle = (movies, titleNames) => {
+  return movies.filter((movie) => movie.Title.toLowerCase().includes(titleNames.toLowerCase()));
+};
+//console.log(searchByTitle(movies, "The"));
+
+/* ESERCIZIO 18
+  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
+  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
+*/
+const searchAndDivide = (movies, titleNames) => {
+  const searchName = {
+    match: [],
+    unmatch: [],
+  };
+
+  movies.forEach((movie) => {
+    if (movie.Title.toLowerCase().includes(titleNames.toLowerCase())) {
+      searchName.match.push(movie);
+    } else {
+      searchName.unmatch.push(movie);
+    }
+  });
+
+  return searchName;
+};
+//console.log(searchAndDivide(movies, "The"));
+
+/* ESERCIZIO 19
+  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
+*/
+const removeIndex = (movies, num) => {
+  return movies.filter((movie, i) => i !== num);
+};
+//console.log(removeIndex(movies, 2));
+
+// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
+
+/* ESERCIZIO 20
+  Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
+*/
+
+/* ESERCIZIO 21
+  Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
+*/
+
+/* ESERCIZIO 22
+  Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
+*/
+
+/* ESERCIZIO 23
+  Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
+*/
+
+/* ESERCIZIO 24
+  Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
+*/
+
+/* ESERCIZIO 25
+  Scrivi una funzione per svuotare la lista non ordinata con id "myList".
+*/
+
+/* ESERCIZIO 26
+  Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
+*/
+
+// [EXTRA] JS Avanzato
+
+/* ESERCIZIO 27
+  Crea una funzione chiamata "halfTree" che riceve un numero come parametro e costruisce un mezzo albero di "*" (asterischi) dell'altezza fornita.
+
+  Esempio:
+  halfTree(3)
+
+  *
+  **
+  ***
+
+*/
+
+/* ESERCIZIO 28
+  Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
+
+  Esempio:
+  tree(3)
+
+    *
+   ***
+  *****
+
+*/
+
+/* ESERCIZIO 29
+  Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
+*/
+
+/* Questo array viene usato per gli esercizi. Non modificarlo. */
