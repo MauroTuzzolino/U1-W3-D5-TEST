@@ -401,30 +401,61 @@ const removeIndex = (movies, num) => {
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
+const container = document.getElementById("container");
+//console.log(container);
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
+const td = document.getElementsByTagName("td");
+//console.log(td);
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
+for (let i = 0; i < td.length; i++) {
+  //console.log(td[i]);
+}
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
+const link = document.getElementsByTagName("a");
+for (let i = 0; i < link.length; i++) {
+  link[i].style.backgroundColor = "red";
+}
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
+function aggiungiElementoAllaLista() {
+  let newElement = document.createElement("li");
+  let text = document.createTextNode("Nuovo elemento nella lista");
+  newElement.appendChild(text);
+  let myList = document.getElementById("myList");
+  myList.appendChild(newElement);
+  return myList;
+}
+aggiungiElementoAllaLista();
+//console.log(aggiungiElementoAllaLista());
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
+function eliminaElementoAllaLista() {
+  let myList = document.getElementById("myList");
+  myList.innerHTML = " ";
+  return myList;
+}
+//eliminaElementoAllaLista();
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+const tr = document.getElementsByTagName("tr");
+for (let i = 0; i < tr.length; i++) {
+  tr[i].classList.add("sonoTR");
+}
 
 // [EXTRA] JS Avanzato
 
